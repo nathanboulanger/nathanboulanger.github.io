@@ -15,19 +15,14 @@
         margin: 0;
         background-size: contain;
         background-position: center;
-        font-size: x-large;
+        font-size: 2rem;
         color: mediumblue;
-      }
-
-      .expired {
-        color: red;
-        font-size: large;
       }
     </style>
   </head>
   <body>
     <h1>Retour au mitard dans :</h1>
-    <p id="countdown"></p>
+    <p id="countdown" style="color: red; font-size: xx-large"></p>
     <p>C'est fini les vacances fdp</p>
 
     <script>
@@ -50,7 +45,6 @@
 
         if (distance < 0) {
           clearInterval(x);
-          countdown.classList.add("expired");
           countdown.innerHTML = "Ca y est faut aller au taff bouffon";
         }
       }, 0);
