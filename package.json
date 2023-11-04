@@ -1,0 +1,23 @@
+{
+  "name": "github-pages",
+  "version": "1.0.0",
+  "description": "Random unit convertor",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server -c-1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nathanboulanger/nathanboulanger.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nathanboulanger/nathanboulanger.github.io/issues"
+  },
+  "homepage": "https://github.com/nathanboulanger/nathanboulanger.github.io#readme",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

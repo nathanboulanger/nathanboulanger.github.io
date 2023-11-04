@@ -1,42 +1,73 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Countdown Page</title>
+  <head>
+    <title>Retour au mitard</title>
     <style>
-        /* CSS for styling */
-        /* Customize the styling as per your preferences */
-        body {
-            text-align: center;
-            font-family: Arial, sans-serif;
-        }
+      body {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        padding: 0;
+        margin: 0;
+        background-size: contain;
+        background-position: center;
+        font-size: x-large;
+        color: mediumblue;
+      }
+
+      .expired {
+        color: red;
+        font-size: large;
+      }
     </style>
-</head>
-<body>
-    <h1>Countdown Page</h1>
+  </head>
+  <body>
+    <h1>Retour au mitard dans :</h1>
     <p id="countdown"></p>
-    <p>Your text goes here!</p>
+    <p>C'est fini les vacances fdp</p>
 
     <script>
-        // JavaScript for the countdown
-        var countDownDate = new Date("2023-12-31 23:59:59").getTime(); // Set the countdown date here
+      var countDownDate = new Date("2023-11-05T09:00:00").getTime(); // Set the countdown date here
 
-        var x = setInterval(function() {
-            var now = new Date().getTime();
-            var distance = countDownDate - now;
+      var x = setInterval(function () {
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
 
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
-            + minutes + "m " + seconds + "s ";
+        const countdown = document.getElementById("countdown");
+        countdown.innerHTML =
+          days + "j " + hours + "h " + minutes + "m " + seconds + "s ";
 
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("countdown").innerHTML = "EXPIRED";
-            }
-        }, 1000);
+        if (distance < 0) {
+          clearInterval(x);
+          countdown.classList.add("expired");
+          countdown.innerHTML = "Ca y est faut aller au taff bouffon";
+        }
+      }, 0);
+
+      const imageList = [
+        "380334353_1100798727751244_388367567958359671_n.jpg",
+        "380452961_1613435179063091_5392752957938759836_n.jpg",
+        "380506154_1036070880871816_5984651309206151151_n.jpg",
+        "380551432_1061745658506585_7690406893549691766_n.jpg",
+        "380583088_1011438389908647_3667581107678887803_n.jpg",
+        "380609565_285879490437894_1031402276683079197_n.jpg",
+        "385534401_1011496140129814_2524363734075875373_n.jpg",
+        "386430784_1204597890496469_1342996190004525677_n.jpg",
+      ];
+      const randomImage =
+        imageList[Math.floor(Math.random() * imageList.length)];
+
+      document.body.style.backgroundImage = `url('./pictures/${randomImage}')`;
     </script>
-</body>
+  </body>
 </html>
