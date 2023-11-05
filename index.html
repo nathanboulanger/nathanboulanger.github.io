@@ -23,29 +23,55 @@
   <body>
     <h1>Retour au mitard dans :</h1>
     <p id="countdown" style="color: red; font-size: xx-large"></p>
-    <p>C'est fini les vacances fdp</p>
+    <p id="description" style="text-align: center">
+      C'est fini les vacances fdp
+    </p>
+    <p id="countdown-retraite" style="color: red"></p>
 
     <script>
-      var countDownDate = new Date("2023-11-06T09:00:00").getTime(); // Set the countdown date here
+      const backToWork = new Date("2023-11-06T09:00:00");
+      const retirement = new Date("2063-11-06T18:00:00");
+      const isWorking = backToWork.getTime() < new Date().getTime();
+      var countDownDate = isWorking
+        ? retirement.getTime()
+        : backToWork.getTime();
 
       var x = setInterval(function () {
         var now = new Date().getTime();
         var distance = countDownDate - now;
 
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const years = Math.floor(distance / (365 * 1000 * 60 * 60 * 24));
+        var days = Math.floor(
+          (distance % (365 * 1000 * 60 * 60 * 24)) / (1000 * 60 * 60 * 24)
+        );
         var hours = Math.floor(
           (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
         );
         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        const countdown = document.getElementById("countdown");
-        countdown.innerHTML =
-          days + "j " + hours + "h " + minutes + "m " + seconds + "s ";
+        const mainCountdown = document.getElementById("countdown");
 
-        if (distance < 0) {
-          clearInterval(x);
-          countdown.innerHTML = "Ca y est faut aller au taff bouffon";
+        const countdownValue =
+          years +
+          "ans " +
+          days +
+          "j " +
+          hours +
+          "h " +
+          minutes +
+          "m " +
+          seconds +
+          "s ";
+
+        if (!isWorking) {
+          mainCountdown.innerHTML = countdownValue;
+        } else {
+          mainCountdown.innerHTML = "Mtn lol 🙃";
+          document.getElementById("description").innerHTML =
+            "Ca y est faut aller au taff bouffon, tqt la retraite c'est pas si loin : ";
+          document.getElementById("countdown-retraite").innerHTML =
+            countdownValue;
         }
       }, 0);
 
